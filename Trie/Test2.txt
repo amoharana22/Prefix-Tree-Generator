@@ -1,0 +1,7 @@
+6
+zoo
+tiger
+lion
+elephant
+cheetah
+kangaroo
