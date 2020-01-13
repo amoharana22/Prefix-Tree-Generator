@@ -26,32 +26,27 @@ public class Trie {
 			return root;
 		}
 		
-		short start=0; //beginning index of first word
+		short start=0; 
 		
-		short end=(short)(allWords[0].length()-1); //ending of the first word
+		short end=(short)(allWords[0].length()-1); 
 		
 		Indexes firstword=new Indexes(0,start,end);
 		root.firstChild=new TrieNode(firstword,null,null);
 		
 		TrieNode ptr=root.firstChild;
 		
-		//ptr.firstChild=new TrieNode(firstword,null,null);
-		//ptr = ptr.firstChild;
+	
 		TrieNode prev = ptr.firstChild;
 		
-		//int simindex=0;
-		//int starting=0;
-		//int checker=-1;
+		
 		
 		for(int i=1; i<allWords.length; i++) {
 			String trieword=allWords[i];
-			//String previous=allWords[starting];
+			
 			
 			int sumupto=0;
 			while(ptr!=null) {
-				//boolean match=false;
-				
-				//fix this 
+			
 				
 				sumupto=simcheck(trieword.substring((int)ptr.substr.startIndex),allWords[ptr.substr.wordIndex].substring((int)ptr.substr.startIndex,ptr.substr.endIndex+1));
 				
@@ -78,7 +73,7 @@ public class Trie {
 						}
 						prev=ptr.firstChild;
 						ptr=ptr.firstChild;
-						//continue;
+					
 						
 					}else {
 						prev=ptr;
@@ -99,9 +94,7 @@ public class Trie {
 				
 				Indexes tik=new Indexes(prev.substr.wordIndex,(short)(sumupto+ptr.substr.startIndex),prev.substr.endIndex);
 				prev.substr.endIndex = (short)(sumupto+ptr.substr.startIndex-1);
-//				if(prev.substr.startIndex > prev.substr.endIndex) {
-//					prev.substr.endIndex = prev.substr.startIndex;
-//				}
+
 				
 				TrieNode ins1=new TrieNode(tik,null,null);
 				
@@ -116,95 +109,11 @@ public class Trie {
 				
 			}
 			
-			//sumupto=0;
+		
 			ptr=root.firstChild;
 			prev=root.firstChild;
 		
-			/*while(ptr!=null) { //while loop starts
-				 
-				if(trieword.charAt(ptr.substr.startIndex)!=previous.charAt(ptr.substr.startIndex)) {
-					prev=ptr;
-					ptr=ptr.sibling;
-					
-
-				}else {
-					if(trieword.substring(ptr.substr.startIndex, ptr.substr.endIndex+1)!=previous.substring(ptr.substr.startIndex, ptr.substr.endIndex+1)) { // re x this out
-						int simupto=0;
-						for(int h=ptr.substr.startIndex; h<ptr.substr.endIndex+1; h++) {
-							if(trieword.charAt(h)==previous.charAt(h)) {
-							
-							simupto++;
-							}else {
-								break;
-							}
-						}
-						TrieNode tempor=new TrieNode(ptr.substr,ptr.firstChild,ptr.sibling);
-						
-						ptr=new TrieNode(tempor.substr,null,tempor.sibling);
-						
-						tempor.sibling=null;
-						ptr.substr.endIndex=(short)(simupto-1);
-						
-						tempor.substr.startIndex=(short)simupto;
-						
-					
-						
-						ptr.firstChild=tempor;
-						
-						ptr=ptr.firstChild;
-						prev=ptr;
-						continue;
-						
-						
-						
-						
-					}// re x this out
-					
-					if(ptr.firstChild!=null) {
-						ptr=ptr.firstChild;
-						prev=ptr;
-						continue;
-					}
-					
-					
-					int n=0;
-					if(trieword.length()>=previous.length()) {
-						n=previous.length();
-					}else {
-						n=trieword.length();
-					}
-					int sumupto=0;
-					for(int a=0; a<n; a++) {
-						if(trieword.charAt(a)==previous.charAt(a)) {
-							sumupto++;
-						}
-					}
-					Indexes tik=new Indexes(starting,(short)0,(short)(sumupto-1));
-					ptr.substr=tik;
-					
-					Indexes saver=new Indexes(starting,(short)(sumupto),(short)(previous.length()-1));
-					
-					ptr.firstChild=new TrieNode(saver,null,null);;
-					
-					saver=new Indexes(i,(short)sumupto,(short)(trieword.length()-1));
-					
-					ptr.firstChild.sibling=new TrieNode(saver,null,null);
-					
-					ptr=ptr.sibling;
-					skip = true;
-					break;
-					
-				}
-			} //while loop ends
-			*/
-			/*if(ptr==null && skip==false) {
-				Indexes insert=new Indexes(i,prev.substr.startIndex,(short)(trieword.length()-1));
-				prev.sibling=new TrieNode(insert,null,null);
-			}
-			skip = false;
-			ptr=root.firstChild;
-			prev=root.firstChild;
-*/
+			
 		}
 	
 		return root;
@@ -256,7 +165,7 @@ public class Trie {
 	 */
 	public static ArrayList<TrieNode> completionList(TrieNode root,
 										String[] allWords, String prefix) {
-		/** COMPLETE THIS METHOD **/
+		
          ArrayList<TrieNode> targets=new ArrayList<>();
          
          TrieNode wordsearch=root;// begin at the root of the prefix tree
